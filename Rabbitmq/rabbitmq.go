@@ -75,7 +75,7 @@ func (r *RabbitMQ) PublishSimple (message string) {
 			nil,
 		)
 	if err != nil {
-		fmt.Printf(err)
+		fmt.Println(err)
 	}
 
 	// 2. 发送消息到队列中
@@ -90,4 +90,59 @@ func (r *RabbitMQ) PublishSimple (message string) {
 			ContentType: "text/plain",
 			Body:        []byte(message),
 		})
+}
+
+// 简单模式下消费
+func (r *RabbitMQ) ConsumeSimple() {
+	// 1.申请队列,如果队列不存在会自动创建,如果存在,则跳过创建
+	// 保证队列存在,消息能发送到队列中
+	_, err := r.channel.QueueDeclare(
+		r.QueueName,
+		// 是否持久化
+		false,
+		// 是否自动删除
+		false,
+		// 是否具有排他性
+		false,
+		// 是否阻塞
+		false,
+		// 额外属性
+		nil,
+	)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// 接受消息
+	msgs, err := r.channel.Consume(
+		r.QueueName,
+		// 用来区分多个消费者
+		"",
+		// 是否自动应答
+		true,
+		// 是否具有排他性
+		false,
+		// true:不能将同一个connection中发送的消息传递给这个connection中的消费者
+		false,
+		// 队列是否设置为阻塞
+		false,
+		nil,
+	)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	forever := make(chan bool)
+	// 启用协程处理消息
+	go func() {
+		for d := range msgs {
+			// 实现我们要处理的逻辑函数
+			log.Printf("Received a message: %s\n", d.Body)
+			fmt.Println(d.Body)
+		}
+	}()
+
+	log.Println("[*] Waiting for messages, To exit press CTRL + C")
+	<-forever
 }
