@@ -7,7 +7,7 @@ import (
 )
 
 // url 格式 amqp://账号:密码@rabbitmq服务器地址:端口号/vhost
-const MQURL = "amqp://imoocuser:imoocuser@127.0.0.1:15672/imooc"
+const MQURL = "amqp://imoocuser:imoocuser@localhost:5672/imooc"
 
 type RabbitMQ struct {
 	conn *amqp.Connection
@@ -53,7 +53,7 @@ func (r *RabbitMQ) failOnErr(err error, message string)  {
 }
 
 // 创建简单模式下rabbitmq实例
-func newRabbitMQSimple(queueName string) *RabbitMQ {
+func NewRabbitMQSimple(queueName string) *RabbitMQ {
 	return newRabbitMQ(queueName, "", "")
 }
 
@@ -61,7 +61,7 @@ func newRabbitMQSimple(queueName string) *RabbitMQ {
 func (r *RabbitMQ) PublishSimple (message string) {
 	// 1.申请队列,如果队列不存在会自动创建,如果存在,则跳过创建
 	// 保证队列存在,消息能发送到队列中
-	_ , err := r.channel.QueueDeclare(
+	_, err := r.channel.QueueDeclare(
 			r.QueueName,
 			// 是否持久化
 			false,
