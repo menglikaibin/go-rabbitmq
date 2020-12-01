@@ -23,7 +23,7 @@ type RabbitMQ struct {
 }
 
 // 创建结构体实例
-func newRabbitMQ(queueName string, exchange string, key string) *RabbitMQ {
+func NewRabbitMQ(queueName string, exchange string, key string) *RabbitMQ {
 	rabbitmq := &RabbitMQ{QueueName: queueName, Exchange: exchange, Key: key, MqUrl: MQURL}
 
 	var err error
@@ -54,7 +54,7 @@ func (r *RabbitMQ) failOnErr(err error, message string)  {
 
 // 创建简单模式下rabbitmq实例
 func NewRabbitMQSimple(queueName string) *RabbitMQ {
-	return newRabbitMQ(queueName, "", "")
+	return NewRabbitMQ(queueName, "", "")
 }
 
 // 简单模式下生产代码
@@ -144,5 +144,109 @@ func (r *RabbitMQ) ConsumeSimple() {
 	}()
 
 	log.Println("[*] Waiting for messages, To exit press CTRL + C")
+	<-forever
+}
+
+// 订阅模式创建RabbitMQ实例
+func NewRabbitMQPubSub (exchangeName string) *RabbitMQ {
+	// 创建rabbitmq实例
+	rabbitmq := NewRabbitMQ("", exchangeName, "")
+	var err error
+	// 获取connection
+	rabbitmq.conn, err = amqp.Dial(rabbitmq.MqUrl)
+	rabbitmq.failOnErr(err, "failed to connect rabbitmq!")
+	// 获取channel
+	rabbitmq.channel, err = rabbitmq.conn.Channel()
+	rabbitmq.failOnErr(err, "fail to open a channel")
+
+	return rabbitmq
+}
+
+func (r *RabbitMQ) PublishPub(message string) {
+	// 1.尝试创建交换机
+	err := r.channel.ExchangeDeclare(
+		r.Exchange,
+		"fanout",
+		true,
+		false,
+		// true表示这个exchange不可以被client用来推送消息,仅用来进行exchange和exchange之间的绑定
+		false,
+		false,
+		nil,
+	)
+
+	r.failOnErr(err, "Failed to declare an exchange")
+
+	// 2.发送消息
+	err = r.channel.Publish(
+		r.Exchange,
+		"",
+		false,
+		false,
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body:		  []byte(message),
+		})
+}
+
+// 订阅模式消费端代码
+func (r *RabbitMQ) ReceiveSub() {
+	// 1.尝试创建交换机
+	err := r.channel.ExchangeDeclare(
+		r.Exchange,
+		// 交换机类型
+		"fanout",
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	r.failOnErr(err, "fail to dechare as exchange")
+
+	// 2.尝试创建队列,队列名称不要填写
+	q, err := r.channel.QueueDeclare(
+		"", // 随机生产队列名称
+		false,
+		false,
+		true,
+		false,
+		nil,
+	)
+
+	r.failOnErr(err, "failed to declare a queue")
+
+	// 绑定队列到exchange中
+	err = r.channel.QueueBind(
+		q.Name,
+		// 在pub/sub模式下,这里key要为空,
+		"",
+		r.Exchange,
+		false,
+		nil,
+	)
+
+	// 消费消息
+	messages, err := r.channel.Consume(
+		q.Name,
+		"",
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	forever := make(chan bool)
+
+	go func() {
+		for d := range messages {
+			log.Printf("received a message: %s", d.Body)
+		}
+	}()
+
+	fmt.Println("退出请按 CTRL + C \n")
+
 	<-forever
 }

@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc259e00-ac63-402d-8fc7-e7983ace522f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mainSimpleReceive2.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RabbitMQPubSub/mainPub.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RabbitMQPubSub/mainSub1.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RabbitMQPubSub/mainSub2.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainSimplePublish.go" beforeDir="false" afterPath="$PROJECT_DIR$/mainSimplePublish.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainSimpleReceive.go" beforeDir="false" afterPath="$PROJECT_DIR$/mainSimpleReceive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RabbitMQ/rabbitmq.go" beforeDir="false" afterPath="$PROJECT_DIR$/RabbitMQ/rabbitmq.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainSimplePublish.go" beforeDir="false" afterPath="$PROJECT_DIR$/RabbitMQWork/mainSimplePublish.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainSimpleReceive.go" beforeDir="false" afterPath="$PROJECT_DIR$/RabbitMQWork/mainSimpleReceive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainSimpleReceive2.go" beforeDir="false" afterPath="$PROJECT_DIR$/RabbitMQWork/mainSimpleReceive2.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,15 +59,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/RabbitMQPubSub" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Go\src\imooc-rabbitmq\RabbitMQPubSub" />
       <recent name="C:\Go\src\imooc-rabbitmq" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Go\src\imooc-rabbitmq\RabbitMQWork" />
+    </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build imooc-rabbitmq (1)">
+  <component name="RunManager" selected="Go Build.go build imooc-rabbitmq/RabbitMQPubSub (2)">
     <configuration name="go build imooc-rabbitmq (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="imooc-rabbitmq" />
       <working_directory value="$PROJECT_DIR$" />
@@ -82,30 +90,40 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build mainSimplePublish.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build imooc-rabbitmq/RabbitMQPubSub (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="imooc-rabbitmq" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/mainSimplePublish.go" />
-      <package value="imooc-rabbitmq" />
+      <filePath value="$PROJECT_DIR$/RabbitMQPubSub/mainSub2.go" />
+      <package value="imooc-rabbitmq/RabbitMQPubSub" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build mainSimpleReceive.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build imooc-rabbitmq/RabbitMQPubSub (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="imooc-rabbitmq" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/mainSimpleReceive.go" />
-      <package value="imooc-rabbitmq" />
+      <filePath value="$PROJECT_DIR$/RabbitMQPubSub/mainPub.go" />
+      <package value="imooc-rabbitmq/RabbitMQPubSub" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build imooc-rabbitmq/RabbitMQPubSub" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="imooc-rabbitmq" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/RabbitMQPubSub/mainSub1.go" />
+      <package value="imooc-rabbitmq/RabbitMQPubSub" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build imooc-rabbitmq (1)" />
-        <item itemvalue="Go Build.go build mainSimpleReceive.go" />
+        <item itemvalue="Go Build.go build imooc-rabbitmq/RabbitMQPubSub (2)" />
+        <item itemvalue="Go Build.go build imooc-rabbitmq/RabbitMQPubSub" />
+        <item itemvalue="Go Build.go build imooc-rabbitmq/RabbitMQPubSub (1)" />
         <item itemvalue="Go Build.go build imooc-rabbitmq" />
-        <item itemvalue="Go Build.go build mainSimplePublish.go" />
+        <item itemvalue="Go Build.go build imooc-rabbitmq (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -126,21 +144,37 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1606407197176">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1606839448425">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1606407197176" />
-    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1606407197176">
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1606839448425" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1606839448424">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1606407197176" />
-    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1606407197176">
+    <state width="2005" height="305" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1606839448424" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1606839448424">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1606407197176" />
-    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1606407197176">
+    <state width="2005" height="305" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1606839448424" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1606839448424">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1606407197176" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1606839448424" />
+    <state width="2005" height="376" key="GridCell.Tab.1.bottom" timestamp="1606838910990">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1606838910990" />
+    <state width="2005" height="376" key="GridCell.Tab.1.center" timestamp="1606838910990">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1606838910990" />
+    <state width="2005" height="376" key="GridCell.Tab.1.left" timestamp="1606838910990">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1606838910990" />
+    <state width="2005" height="376" key="GridCell.Tab.1.right" timestamp="1606838910990">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state width="2005" height="376" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1606838910990" />
   </component>
 </project>
